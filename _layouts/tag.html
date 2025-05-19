@@ -13,7 +13,7 @@
       {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
       {% for year in posts_by_year %}
         <h2 onclick="togglePosts(this)">{{ year.name }}</h2>
-        <ul class="year-posts" style="display: none;">
+        <ul class="year-posts" style="display: block;">
           {% for post in year.items %}
             <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%y-%m-%d" }} - {{ post.title }}</a></li>
           {% endfor %}
@@ -26,7 +26,7 @@
       <ul>
         {% for post in site.posts %}
           {% if post.tags contains page.tag %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%Y-%m-%d" }} - {{ post.title }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
