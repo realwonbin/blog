@@ -1,7 +1,7 @@
 title: 영사마 블로그
 description: 하루기록
 baseurl: ""  # GitHub Pages용 하위 디렉토리
-url: "https://realwonbin.github.io"
+url: "https://blog.younglee.co.kr"
 theme: minima
 plugins:
   - jekyll-feed

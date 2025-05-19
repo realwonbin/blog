@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="/assets/style.css"> <!-- 수정 -->
 </head>
 <body>
   <div id="container">
@@ -14,7 +14,7 @@
         <h2 onclick="togglePosts(this)">{{ year.name }}</h2>
         <ul class="year-posts" style="display: block;">
           {% for post in year.items %}
-            <li><a href="{{ site.baseurl | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
+            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
           {% endfor %}
         </ul>
       {% endfor %}
@@ -29,7 +29,7 @@
       <ul>
         {% assign sorted_tags = site.tags | sort %}
         {% for tag in sorted_tags %}
-          <li><a href="{{ site.baseurl }}/tag/{{ tag[0] }}/">#{{ tag[0] }}</a></li>
+          <li><a href="{{ '/tag/' | append: tag[0] | relative_url }}">#{{ tag[0] }}</a></li>
         {% endfor %}
       </ul>
     </section>
