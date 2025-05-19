@@ -11,12 +11,10 @@
       <h1 style="margin-top:0">Blog</h1>
       {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
       {% for year in posts_by_year %}
-        <h2>{{ year.name }}</h2>
-        <ul>
+        <h2 onclick="togglePosts(this)">{{ year.name }}</h2>
+        <ul class="year-posts" style="display: none;">
           {% for post in year.items %}
-            <li>
-              <a href="{{site.baseurl}}{{ post.url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a>
-            </li>
+            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
           {% endfor %}
         </ul>
       {% endfor %}
@@ -25,5 +23,12 @@
       {{ content }}
     </main>
   </div>
+
+  <script>
+    function togglePosts(header) {
+      const ul = header.nextElementSibling;
+      ul.style.display = (ul.style.display === "none") ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
