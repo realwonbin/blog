@@ -2,14 +2,11 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
 }
-a {
-  text-decoration: none;
-  color: #5d0049;
-}
+
 a:hover {
   text-decoration: underline;
 }
-
+/*
 @media (prefers-color-scheme: dark) {
   body {
     background: #222;
@@ -22,4 +19,17 @@ a:hover {
   aside a {
     color: #e88daf;
   }
-}
+}*/
+
+body { margin: 0; font-family: sans-serif; }
+    #container { display: flex; height: 100vh; }
+    aside { width: 280px; background: #f8f8f8; padding: 1rem; overflow-y: auto; border-right: 1px solid #ccc; }
+    aside h2 { font-size: 1.1rem; margin-top: 1rem; }
+    aside ul { padding-left: 1rem; }
+    aside li { list-style: none; margin: 0.2rem 0; }
+    aside a { text-decoration: none; color: #85002c; }
+    main { flex: 1; padding: 2rem; overflow-y: auto; }
+    aside a.active {
+    font-weight: bold;
+   color: #000;
+        }
