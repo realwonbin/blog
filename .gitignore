@@ -1,3 +1,8 @@
 exclude:
   - static/images/
   - static/media/
+_site/
+.sass-cache/
+.jekyll-cache/
+*.gem
+*.log

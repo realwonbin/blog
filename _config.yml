@@ -1,4 +1,7 @@
-title: Blog
-baseurl: "/blog"       # 꼭 필요! 실제 서브경로
+title: 영사마 블로그
+description: 사진과 비행의 기록
+baseurl: "/blog"  # GitHub Pages용 하위 디렉토리
 url: "https://realwonbin.github.io"
 theme: minima
+plugins:
+  - jekyll-feed
