@@ -1,15 +1,15 @@
-{% assign base = include.base | default: "https://your-server/media/" %}
+{% assign base = include.base | default: "https://115.86.157.69:8000/" %}
 {% assign name = include.name %}
 {% assign ext = include.ext | downcase %}
 
 {% if ext == "mp4" %}
-<video controls preload="metadata" style="max-width:100%;">
+<video controls preload="metadata" style="max-width:50%;">
   <source src="{{ base }}{{ name }}.mp4" type="video/mp4">
 </video>
 {% elsif ext == "jpg" or ext == "jpeg" or ext == "png" %}
-<img src="{{ base }}{{ name }}.{{ ext }}" style="max-width:100%;" />
+<img src="{{ base }}{{ name }}.{{ ext }}" style="max-width:50%;" />
 {% elsif ext == "wav" %}
-<audio controls preload="metadata" style="width:100%;">
+<audio controls preload="metadata" style="width:50%;">
   <source src="{{ base }}{{ name }}.wav" type="audio/wav">
 </audio>
 {% endif %}
