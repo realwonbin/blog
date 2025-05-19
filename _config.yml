@@ -5,3 +5,4 @@ url: "https://realwonbin.github.io"
 theme: minima
 plugins:
   - jekyll-feed
+permalink: /:categories/:year/:month/:day/:title/
