@@ -1,0 +1,4 @@
+title: Blog
+baseurl: "/blog"       # 꼭 필요! 실제 서브경로
+url: "https://realwonbin.github.io"
+theme: minima
