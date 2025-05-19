@@ -4,18 +4,34 @@
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    #container { display: flex; height: 100vh; }
+    aside { width: 280px; background: #f8f8f8; padding: 1rem; overflow-y: auto; border-right: 1px solid #ccc; }
+    aside h2 { font-size: 1.1rem; margin-top: 1rem; }
+    aside ul { padding-left: 1rem; }
+    aside li { list-style: none; margin: 0.2rem 0; }
+    aside a { text-decoration: none; color: #0033cc; }
+    main { flex: 1; padding: 2rem; overflow-y: auto; }
+  </style>
 </head>
 <body>
-  <div id="container" style="display: flex; height: 100vh;">
-    <aside style="width: 250px; padding: 1rem; background: #f4f4f4;">
-      <h2>📁 글 목록</h2>
-      <ul>
-        {% for post in site.posts %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-      </ul>
+  <div id="container">
+    <aside>
+      <h1 style="margin-top:0">🗂️ 글 목록</h1>
+      {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+      {% for year in posts_by_year %}
+        <h2>{{ year.name }}</h2>
+        <ul>
+          {% for post in year.items %}
+            <li>
+              <a href="{{ post.url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
     </aside>
-    <main style="flex: 1; padding: 2rem;">
+    <main>
       {{ content }}
     </main>
   </div>
