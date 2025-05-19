@@ -7,6 +7,6 @@ plugins:
   - jekyll-feed
 permalink: /:year-:month-:day-:title/
 include:
-  - tag
+  - _tags
 
 
