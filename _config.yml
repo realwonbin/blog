@@ -5,5 +5,5 @@ url: "https://realwonbin.github.io"
 theme: minima
 plugins:
   - jekyll-feed
-permalink: /:title/
+permalink: :title/
 
