@@ -15,7 +15,7 @@
         <h2 onclick="togglePosts(this)">{{ year.name }}</h2>
         <ul class="year-posts" style="display: none;">
           {% for post in year.items %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
+            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%y-%m-%d" }} - {{ post.title }}</a></li>
           {% endfor %}
         </ul>
       {% endfor %}
