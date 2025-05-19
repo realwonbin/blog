@@ -1,6 +1,6 @@
 title: 영사마 블로그
 description: 하루기록
-baseurl: "/blog"  # GitHub Pages용 하위 디렉토리
+baseurl: ""  # GitHub Pages용 하위 디렉토리
 url: "https://realwonbin.github.io"
 theme: minima
 plugins:
