@@ -14,39 +14,75 @@
 }*/
 
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  margin: 0;
-  max-width: 1500px;     /* 최대 너비 제한 */
-  margin: auto;
-}
-
-#container {
-  display: flex;
-  height: 100vh;
-  max-width: 1000px;
-  margin: auto;
-}
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100vh;
+    }
 
 aside {
-  width: 240px;
-  background: #f8f8f8;
-  padding: 1rem;
-  overflow-y: auto;
-  border-right: 1px solid #ccc;
-}
-
+      width: 280px;
+      background: #f8f8f8;
+      padding: 1rem;
+      overflow-y: auto;
+      border-right: 1px solid #ccc;
+    }
+aside h2 {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      color: #888;
+      cursor: pointer;
+    }
+    aside ul {
+      padding-left: 1rem;
+    }
+    aside li {
+      list-style: none;
+      margin: 0.2rem 0;
+    }
+    aside a {
+      text-decoration: none;
+      color: #85002c;
+    }
 main {
-  flex: 1;
-  padding: 2rem;
-  overflow-y: auto;
-}
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    #tags {
+      width: 200px;
+      padding: 1rem;
+      border-left: 1px solid #ccc;
+      background: #fff;
+    }
+    #tags h2 {
+      margin-top: 0;
+    }
+    #tags ul {
+      padding-left: 1rem;
+    }
+    #tags li {
+      list-style: none;
+      margin: 0.2rem 0;
+    }
+    #tags a {
+      color: #5d0049;
+      text-decoration: none;
+    }
+    #tags a:hover {
+      text-decoration: underline;
+    }
 
 h1 {
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
 
-    aside h2 {
+  aside h2 {
   font-size: 1rem;
   margin-top: 1rem;
   color: #888; /* 회색빛 */
