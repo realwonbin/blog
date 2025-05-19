@@ -9,3 +9,17 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #222;
+    color: #ddd;
+  }
+  aside {
+    background: #2a2a2a;
+    border-right-color: #444;
+  }
+  aside a {
+    color: #e88daf;
+  }
+}
