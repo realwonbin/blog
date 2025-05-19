@@ -13,9 +13,9 @@ layout : default
 {% assign name = include.name %}
 
 {% if kind == "image" %}
-<img src="http://115.86.157.69:8000/static/images/{{ name }}" />
+<img src="http://115.86.157.69:8000/{{ name }}" />
 {% elsif kind == "video" %}
 <video controls>
-  <source src="http://115.86.157.69:8000/static/media/{{ name }}" type="video/mp4">
+  <source src="http://115.86.157.69:8000/{{ name }}" type="video/mp4">
 </video>
 {% endif %}
