@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div id="container" style="display: flex; height: 100vh;">
+    <aside style="width: 250px; padding: 1rem; background: #f4f4f4;">
+      <h2>📁 글 목록</h2>
+      <ul>
+        {% for post in site.posts %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </aside>
+    <main style="flex: 1; padding: 2rem;">
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
