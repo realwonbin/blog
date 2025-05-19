@@ -6,3 +6,4 @@ theme: minima
 plugins:
   - jekyll-feed
 permalink: /:title/
+
