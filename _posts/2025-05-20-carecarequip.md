@@ -2,7 +2,7 @@
 title: 엔진오일-세차-장비수리
 layout: default
 date: 2025-05-20
-tags: [fix]
+tags: [정돈]
 permalink: 2025-05-20-carecarequip/
 ---
 
