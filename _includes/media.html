@@ -3,11 +3,11 @@
 {% assign ext = include.ext | downcase %}
 
 {% if ext == "mp4" %}
-<video controls preload="metadata" style="max-width:70%;">
+<video controls preload="metadata" style="max-width:90%;">
   <source src="{{ base }}{{ name }}.mp4" type="video/mp4">
 </video>
 {% elsif ext == "jpg" or ext == "jpeg" or ext == "png" %}
-<img src="{{ base }}{{ name }}.{{ ext }}" style="max-width:70%;" />
+<img src="{{ base }}{{ name }}.{{ ext }}" style="max-width:90%;" />
 {% elsif ext == "wav" %}
 <audio controls preload="metadata" style="width:70%;">
   <source src="{{ base }}{{ name }}.wav" type="audio/wav">
