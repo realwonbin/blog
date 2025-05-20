@@ -98,6 +98,11 @@ h1 {
       font-size: 1rem ;
     }
     aside a { 
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      white-space: pre; /* 공백 유지 */
+      text-indent: -3.5ch;
+      padding-left: 4ch;
       text-decoration: none; 
       color: #85002c; 
     }
