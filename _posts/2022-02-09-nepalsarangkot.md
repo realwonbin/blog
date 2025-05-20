@@ -1,5 +1,5 @@
 ---
-title: 네팔 사랑곳
+title: 네팔, 사랑곳
 layout: default
 date: 2022-02-09
 tags: [paragliding]
