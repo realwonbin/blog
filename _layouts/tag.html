@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>#{{ page.tag }}</title>
-  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
   <div id="container">
@@ -26,7 +26,7 @@
       <ul>
         {% for post in site.posts %}
           {% if post.tags contains page.tag %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
+            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%y-%m-%d" }} - {{ post.title }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
