@@ -1,5 +1,5 @@
 ---
-title: 밥봉활공장 시험비행
+title: 밥봉활공장, 시험비행
 layout: default
 date: 2025-05-17
 tags: [paragliding]
