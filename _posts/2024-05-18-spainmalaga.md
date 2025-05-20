@@ -8,4 +8,4 @@ permalink: 2024-05-18-spainmalaga/
 
 # 말라가, 스페인 
 
-{% include media.html name="2024-05-18-spainmalaga" ext="mp4" %}
+{% include media.html name="2024-05-18-spainmalaga" ext="mov" %}
