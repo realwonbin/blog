@@ -1,53 +1,23 @@
-<!-- _layouts/tag.html -->
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>#{{ page.tag }}</title>
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/style.css">
-</head>
-<body>
-  <div id="container">
-    <aside>
-      <h1 style="margin-top:0">블로그 / 이영</h1>
-      {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
-      {% for year in posts_by_year %}
-        <h2 onclick="togglePosts(this)">{{ year.name }}</h2>
-        <ul class="year-posts" style="display: block;">
-          {% for post in year.items %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-head">
+    <h1 class="post-title">#{{ page.tag }}</h1>
+  </header>
+
+  <section class="post-body prose">
+    <ul>
+      {% for post in site.posts %}
+        {% if post.tags contains page.tag %}
+          <li>
+            <a href="{{ post.url | relative_url }}">
+              {{ post.date | date: "%Y-%m-%d" }} – {{ post.title }}
+            </a>
+          </li>
+        {% endif %}
       {% endfor %}
-    </aside>
-
-    <main>
-      <h1>#{{ page.tag }}</h1>
-      <ul>
-        {% for post in site.posts %}
-          {% if post.tags contains page.tag %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%y-%m-%d" }} - {{ post.title }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </main>
-
-    <section id="tags">
-      <h2># Tags</h2>
-      <ul>
-        {% assign sorted_tags = site.tags | sort %}
-        {% for tag in sorted_tags %}
-          <li><a href="{{ site.baseurl }}/tag/{{ tag[0] }}/">#{{ tag[0] }}</a></li>
-        {% endfor %}
-      </ul>
-    </section>
-  </div>
-
-  <script>
-    function togglePosts(header) {
-      const ul = header.nextElementSibling;
-      ul.style.display = (ul.style.display === "none") ? "block" : "none";
-    }
-  </script>
-</body>
-</html>
+    </ul>
+  </section>
+</article>

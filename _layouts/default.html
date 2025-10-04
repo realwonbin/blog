@@ -52,8 +52,9 @@
       <nav class="tag-list">
         {% assign sorted_tags = site.tags | sort %}
         {% for t in sorted_tags %}
-          <a class="tag" href="{{ '/tags/#' | append: t[0] | relative_url }}">#{{ t[0] }}</a>
+          <a class="tag" href="{{ '/tag/' | append: t[0] | append: '/' | relative_url }}">#{{ t[0] }}</a>
         {% endfor %}
+
       </nav>
     </aside>
   </div>
