@@ -9,17 +9,30 @@
 <body>
   <div id="container">
     <aside>
-      <h1 style="margin-top:0">블로그 / 이영</h1>
-      {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
-      {% for year in posts_by_year %}
-        <h2 onclick="togglePosts(this)">{{ year.name }}</h2>
-        <ul class="year-posts" style="display: block;">
-          {% for post in year.items %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%m-%d" }} - {{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
-      {% endfor %}
-    </aside>
+  <h1 style="margin-top:0">블로그 / 이영</h1>
+
+  {%- assign posts_by_year = site.posts
+      | group_by_exp: "post", "post.date | date: '%Y'"
+      | sort: "name" | reverse -%}
+
+  {%- for year in posts_by_year -%}
+    <details class="year" {% if forloop.first %}open{% endif %}>
+      <summary>{{ year.name }}</summary>
+      <ul class="year-posts">
+        {%- assign items = year.items | sort: "date" | reverse -%}
+        {%- for post in items -%}
+          <li>
+            <a href="{{ post.url | relative_url }}"
+               data-path="{{ post.url | relative_url }}">
+              {{ post.date | date: "%m-%d" }} - {{ post.title }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </details>
+  {%- endfor -%}
+</aside>
+
 
     <main>
       {{ content }}
@@ -44,3 +57,17 @@
   </script>
 </body>
 </html>
+<script>
+  // 현재 경로와 일치하는 왼쪽 링크에 active 부여 + 소속 연도 펼침
+  (function () {
+    var path = location.pathname.replace(/\/+$/, "");
+    document.querySelectorAll("aside a[data-path]").forEach(function(a){
+      var ap = a.getAttribute("data-path").replace(/\/+$/, "");
+      if (ap === path){ 
+        a.classList.add("active");
+        var det = a.closest("details"); 
+        if(det) det.open = true;
+      }
+    });
+  })();
+</script>

@@ -114,3 +114,79 @@ h1 {
     font-weight: bold;
     color: #000;
     }
+
+    /* ----- 레이아웃 기본 ----- */
+#container{
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;               /* height → min-height 로 바꿔 페이지 스크롤 허용 */
+}
+
+/* 왼쪽 연도/목록: 스티키 + 자체 스크롤(긴 목록 보호) */
+aside{
+  width: 280px;
+  background: #f8f8f8;
+  padding: 1rem;
+  border-right: 1px solid #ccc;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow: auto;                   /* 내부만 스크롤 */
+}
+
+/* 본문: 페이지 스크롤 사용 (이중 스크롤 제거) */
+main{
+  flex: 1;
+  padding: 2rem;
+  overflow: visible;                /* auto → visible */
+}
+
+/* 태그 사이드: 스티키 + 자체 스크롤 */
+#tags{
+  width: 220px;
+  padding: 1rem;
+  border-left: 1px solid #ccc;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+/* 연도 토글(details/summary) 기본 스타일 */
+details.year{ margin: .25rem 0 .5rem; }
+details.year > summary{
+  list-style: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #888;
+  font-weight: 600;
+  padding: .25rem 0;
+}
+details.year > summary::-webkit-details-marker{ display:none; }
+
+/* 왼쪽 링크(날짜 정렬 표현 유지) */
+aside a{
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  white-space: pre;
+  text-indent: -3.5ch;
+  padding-left: 4ch;
+  text-decoration: none;
+  color: #85002c;
+}
+aside a.active{ font-weight: 700; color: #000; }
+
+/* 반응형: 폭이 좁아지면 세로 스택 */
+@media (max-width: 960px){
+  #container{ display: block; }
+  aside, #tags{ position: static; max-height: none; width: auto; overflow: visible; }
+  main{ padding: 1.25rem; }
+}
+
+/* 미디어(비디오/이미지) 유동폭 */
+.media, .post-content video, .post-content img{
+  display:block; max-width:100%; height:auto;
+}
+.post-content video{ width:100%; border-radius: 4px; }
