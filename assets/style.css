@@ -97,3 +97,19 @@ hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
   #tags{ border-left:1px solid var(--rule); }
   .post-link.active{ background:rgba(255,91,154,.12); }
 }
+/* Floating title tooltip */
+.tooltip{
+  position: fixed; z-index: 9999; pointer-events: none;
+  background: rgba(20,20,22,.95); color:#fff;
+  font-size: .9rem; line-height: 1.4;
+  padding: 8px 10px; border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+  max-width: 42vw;
+}
+@media (prefers-color-scheme: light){
+  .tooltip{ background:#111; color:#fff; }
+}
+
+/* (선택) 호버 시 한 줄 말고 감싸서 보여주기 — 툴팁 대신 쓸 때 */
+.left-rail .post-link:hover,
+.left-rail .post-link:focus{ white-space: normal; }

@@ -25,12 +25,15 @@
             {% for p in items %}
               <li>
                 <a class="post-link"
-                   href="{{ p.url | relative_url }}"
-                   data-path="{{ p.url | relative_url }}">
+                  href="{{ p.url | relative_url }}"
+                  data-path="{{ p.url | relative_url }}"
+                  title="{{ p.title }}"
+                  data-full="{{ p.date | date: '%m-%d' }} – {{ p.title }}">
                   <span class="date">{{ p.date | date: "%m-%d" }}</span>
                   <span class="sep"> – </span>
                   <span class="title">{{ p.title }}</span>
                 </a>
+
               </li>
             {% endfor %}
           </ul>
