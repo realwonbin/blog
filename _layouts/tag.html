@@ -2,13 +2,18 @@
 layout: default
 ---
 
-{% assign dest = site.portfolio_url | append: '/?tag=' | append: page.tag %}
+{%- comment -%}
+  목적지(포트폴리오) URL — 한글/공백 안전을 위해 uri_escape 적용
+{%- endcomment -%}
+{% assign dest = site.portfolio_url | append: '/?tag=' | append: page.tag | uri_escape %}
 
-{%- if site.portfolio_url and site.tag_redirect -%}
-  <script>
-    // 태그 페이지 진입 시 자동 이동 (JS 우선, 폴백은 아래 noscript 링크)
-    location.replace('{{ dest | escape }}');
-  </script>
+{%- comment -%}
+  ⚠️ 자동 리다이렉트는 UX/SEO에 불리하고 모든 태그가 외부로 튀는 원인이 됩니다.
+  정말 필요할 때만 `_config.yml`에 tag_redirect: true 설정 후
+  아래 조건을 page.tag == 'portfolio' 같은 구체 조건으로 제한하세요.
+{%- endcomment -%}
+{%- if false and site.portfolio_url and site.tag_redirect -%}
+  <script>location.replace('{{ dest | escape }}');</script>
   <noscript><p><a href="{{ dest }}">포트폴리오로 이동</a></p></noscript>
 {%- endif -%}
 
@@ -16,7 +21,9 @@ layout: default
   <header class="post-head">
     <h1 class="post-title">
       {%- if site.portfolio_url -%}
-        <a href="{{ dest }}" target="_blank" rel="noopener" class="heading-link">#{{ page.tag }}</a>
+        <a href="{{ dest }}" target="_blank" rel="noopener" class="heading-link" aria-label="포트폴리오에서 #{{ page.tag }} 보기">
+          #{{ page.tag }}
+        </a>
       {%- else -%}
         #{{ page.tag }}
       {%- endif -%}
