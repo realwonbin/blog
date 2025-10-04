@@ -113,3 +113,11 @@ hr{ border:0; border-top:1px solid var(--rule); margin:24px 0; }
 /* (선택) 호버 시 한 줄 말고 감싸서 보여주기 — 툴팁 대신 쓸 때 */
 .left-rail .post-link:hover,
 .left-rail .post-link:focus{ white-space: normal; }
+
+/* 가짜 태그(#portfolio) 표시 */
+#tags .tag-extern::after{
+  content:"↗";
+  margin-left:.3em;
+  font-size:.9em;
+  opacity:.85;
+}

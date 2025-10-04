@@ -1,0 +1,23 @@
+# Tags 패널에 고정으로 넣을 외부 링크들
+# name:  실제 태그와 충돌 방지용 키(중복되면 실제 태그 목록에서 제외)
+# label: UI에 보일 텍스트(#은 자동으로 붙임)
+# url:   이동할 주소
+# order: 숫자가 작을수록 위에 (생략 시 100)
+# newtab: true면 새 탭
+- name: portfolio
+  label: portfolio
+  url: https://www.younglee.co.kr
+  order: 1
+  newtab: true
+
+# 예시 더
+- name: instagram
+  label: instagram
+  url: https://instagram.com/iam2020
+  order: 10
+  newtab: true
+- name: email
+  label: email
+  url: mailto:iam2022@gmail.com
+  order: 20
+  newtab: false

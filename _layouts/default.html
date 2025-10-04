@@ -48,15 +48,34 @@
 
     <!-- 오른쪽: 태그 -->
     <aside id="tags" aria-label="태그">
-      <h2># Tags</h2>
-      <nav class="tag-list">
-        {% assign sorted_tags = site.tags | sort %}
-        {% for t in sorted_tags %}
-          <a class="tag" href="{{ '/tag/' | append: t[0] | append: '/' | relative_url }}">#{{ t[0] }}</a>
-        {% endfor %}
+  <h2># Tags</h2>
+  <nav class="tag-list">
 
-      </nav>
-    </aside>
+    {%- assign extern = site.data.externals | sort: 'order' -%}
+    {%- assign extern_names = extern | map: 'name' -%}
+
+    {#-- ① 외부 링크(가짜 태그) --#}
+    {%- for e in extern -%}
+      <a class="tag tag-extern"
+         href="{{ e.url }}"
+         {% unless e.newtab == false %}target="_blank" rel="noopener"{% endunless %}>
+        #{{ e.label | default: e.name }}
+      </a>
+    {%- endfor -%}
+
+    {#-- ② 실제 태그(외부에서 지정한 name은 제외) --#}
+    {%- assign sorted_tags = site.tags | sort -%}
+    {%- for t in sorted_tags -%}
+      {%- assign name = t[0] -%}
+      {%- unless extern_names contains name -%}
+        <a class="tag" href="{{ '/tag/' | append: name | append: '/' | relative_url }}">#{{ name }}</a>
+      {%- endunless -%}
+    {%- endfor -%}
+
+  </nav>
+</aside>
+
+
   </div>
 
   <script defer src="{{ '/assets/app.js' | relative_url }}"></script>
