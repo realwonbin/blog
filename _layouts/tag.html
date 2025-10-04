@@ -2,22 +2,40 @@
 layout: default
 ---
 
+{% assign dest = site.portfolio_url | append: '/?tag=' | append: page.tag %}
+
+{%- if site.portfolio_url and site.tag_redirect -%}
+  <script>
+    // 태그 페이지 진입 시 자동 이동 (JS 우선, 폴백은 아래 noscript 링크)
+    location.replace('{{ dest | escape }}');
+  </script>
+  <noscript><p><a href="{{ dest }}">포트폴리오로 이동</a></p></noscript>
+{%- endif -%}
+
 <article class="post">
   <header class="post-head">
-    <h1 class="post-title">#{{ page.tag }}</h1>
+    <h1 class="post-title">
+      {%- if site.portfolio_url -%}
+        <a href="{{ dest }}" target="_blank" rel="noopener" class="heading-link">#{{ page.tag }}</a>
+      {%- else -%}
+        #{{ page.tag }}
+      {%- endif -%}
+    </h1>
+    <p class="post-meta">태그 페이지</p>
   </header>
 
   <section class="post-body prose">
     <ul>
-      {% for post in site.posts %}
-        {% if post.tags contains page.tag %}
-          <li>
-            <a href="{{ post.url | relative_url }}">
-              {{ post.date | date: "%Y-%m-%d" }} – {{ post.title }}
-            </a>
-          </li>
-        {% endif %}
-      {% endfor %}
+      {%- assign items = site.posts
+           | where_exp: "p", "p.tags contains page.tag"
+           | sort: "date" | reverse -%}
+      {%- for p in items -%}
+        <li>
+          <a href="{{ p.url | relative_url }}">{{ p.date | date: "%Y-%m-%d" }} – {{ p.title }}</a>
+        </li>
+      {%- else -%}
+        <li>이 태그가 붙은 글이 없습니다.</li>
+      {%- endfor -%}
     </ul>
   </section>
 </article>
