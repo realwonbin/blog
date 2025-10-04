@@ -48,13 +48,13 @@
 
     <!-- 오른쪽: 태그 -->
     <aside id="tags" aria-label="태그">
-  <h2># Tags</h2>
+  <h2># tags</h2>
   <nav class="tag-list">
 
     {%- assign extern = site.data.externals | sort: 'order' -%}
     {%- assign extern_names = extern | map: 'name' -%}
 
-    {#-- ① 외부 링크(가짜 태그) --#}
+    <!-- ① 외부 링크(가짜 태그) -->
     {%- for e in extern -%}
       <a class="tag tag-extern"
          href="{{ e.url }}"
@@ -63,7 +63,7 @@
       </a>
     {%- endfor -%}
 
-    {#-- ② 실제 태그(외부에서 지정한 name은 제외) --#}
+    <!-- ② 실제 태그(외부에서 지정한 name은 제외) -->
     {%- assign sorted_tags = site.tags | sort -%}
     {%- for t in sorted_tags -%}
       {%- assign name = t[0] -%}

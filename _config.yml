@@ -10,5 +10,5 @@ include:
   - _tags
 
 portfolio_url: https://www.younglee.co.kr
-tag_redirect: true   # 태그 페이지 접근 시 자동으로 포트폴리오로 이동
+tag_redirect: false 
 
