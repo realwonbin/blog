@@ -19,16 +19,10 @@ layout: default
 
 <article class="post">
   <header class="post-head">
-    <h1 class="post-title">
-      {%- if site.portfolio_url -%}
-        <a href="{{ dest }}" target="_blank" rel="noopener" class="heading-link" aria-label="포트폴리오에서 #{{ page.tag }} 보기">
-          #{{ page.tag }}
-        </a>
-      {%- else -%}
-        #{{ page.tag }}
-      {%- endif -%}
-    </h1>
-    <p class="post-meta">태그 페이지</p>
+  <h1 class="post-title">#{{ page.tag }}</h1>   {# ← 앵커 제거 #}
+  <p class="post-meta">태그 페이지</p>
+</header>
+
   </header>
 
   <section class="post-body prose">
