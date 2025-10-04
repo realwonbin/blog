@@ -1,73 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/style.css"> <!-- 수정 -->
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
-  <div id="container">
-    <aside>
-  <h1 style="margin-top:0">블로그 / 이영</h1>
+  <div id="container" class="layout">
+    <!-- 왼쪽: 연도/글목록 -->
+    <aside class="left-rail">
+      <h1>블로그 / 이영</h1>
 
-  {%- assign posts_by_year = site.posts
-      | group_by_exp: "post", "post.date | date: '%Y'"
-      | sort: "name" | reverse -%}
+      {%- assign posts_by_year = site.posts
+           | group_by_exp: "post", "post.date | date: '%Y'"
+           | sort: "name" | reverse -%}
 
-  {%- for year in posts_by_year -%}
-    <details class="year" {% if forloop.first %}open{% endif %}>
-      <summary>{{ year.name }}</summary>
-      <ul class="year-posts">
-        {%- assign items = year.items | sort: "date" | reverse -%}
-        {%- for post in items -%}
-          <li>
-            <a href="{{ post.url | relative_url }}"
-               data-path="{{ post.url | relative_url }}">
-              {{ post.date | date: "%m-%d" }} - {{ post.title }}
-            </a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </details>
-  {%- endfor -%}
-</aside>
+      {%- for year in posts_by_year -%}
+        <details class="year" {% if forloop.first %}open{% endif %}>
+          <summary>{{ year.name }}</summary>
+          <ul class="year-posts">
+            {%- assign items = year.items | sort: "date" | reverse -%}
+            {%- for post in items -%}
+              <li>
+                <a href="{{ post.url | relative_url }}"
+                   data-path="{{ post.url | relative_url }}">
+                  {{ post.date | date: "%m-%d" }} - {{ post.title }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </details>
+      {%- endfor -%}
+    </aside>
 
-
-    <main>
+    <!-- 가운데: 본문 -->
+    <main id="content">
       {{ content }}
     </main>
 
-    <section id="tags">
+    <!-- 오른쪽: 태그 -->
+    <aside id="tags">
       <h2># Tags</h2>
-      <ul>
-        {% assign sorted_tags = site.tags | sort %}
-        {% for tag in sorted_tags %}
-          <li><a href="{{ '/tag/' | append: tag[0] | relative_url }}">#{{ tag[0] }}</a></li>
-        {% endfor %}
-      </ul>
-    </section>
+      {% for tag in site.tags %}
+        <a class="tag" href="{{ '/tags/#' | append: tag[0] | relative_url }}">#{{ tag[0] }}</a>
+      {% endfor %}
+    </aside>
   </div>
 
   <script>
-    function togglePosts(header) {
-      const ul = header.nextElementSibling;
-      ul.style.display = (ul.style.display === "none") ? "block" : "none";
-    }
+    // 현재 글 하이라이트 & 해당 연도 자동 펼침
+    (function(){
+      var path = location.pathname.replace(/\/+$/,'');
+      document.querySelectorAll('aside a[data-path]').forEach(function(a){
+        var ap = a.getAttribute('data-path').replace(/\/+$/,'');
+        if(ap === path){ a.classList.add('active'); var d=a.closest('details'); if(d) d.open=true; }
+      });
+    })();
   </script>
 </body>
 </html>
-<script>
-  // 현재 경로와 일치하는 왼쪽 링크에 active 부여 + 소속 연도 펼침
-  (function () {
-    var path = location.pathname.replace(/\/+$/, "");
-    document.querySelectorAll("aside a[data-path]").forEach(function(a){
-      var ap = a.getAttribute("data-path").replace(/\/+$/, "");
-      if (ap === path){ 
-        a.classList.add("active");
-        var det = a.closest("details"); 
-        if(det) det.open = true;
-      }
-    });
-  })();
-</script>

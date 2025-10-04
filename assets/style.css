@@ -1,192 +1,68 @@
-/*
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #222;
-    color: #ddd;
-  }
-  aside {
-    background: #2a2a2a;
-    border-right-color: #444;
-  }
-  aside a {
-    color: #e88daf;
-  }
-}*/
-
-body {
-      margin: 0;
-      font-family: sans-serif;
-    }
-    #container {
-      display: flex;
-      max-width: 1200px;
-      margin: 0 auto;
-      height: 100vh;
-    }
-
-aside {
-      width: 280px;
-      background: #f8f8f8;
-      padding: 1rem;
-      overflow-y: auto;
-      border-right: 1px solid #ccc;
-    }
-aside h2 {
-      font-size: 1.1rem;
-      margin-top: 1rem;
-      color: #888;
-      cursor: pointer;
-    }
-    aside ul {
-      padding-left: 1rem;
-    }
-    aside li {
-      list-style: none;
-      margin: 0.2rem 0;
-    }
-    aside a {
-      text-decoration: none;
-      color: #85002c;
-    }
-main {
-      flex: 1;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-    #tags {
-      width: 200px;
-      padding: 1rem;
-      border-left: 1px solid #ccc;
-      background: #fff;
-    }
-    #tags h2 {
-      margin-top: 0;
-    }
-    #tags ul {
-  list-style: none;
-  padding-left: 0;
-}
-#tags li {
-  margin: 0.5rem 0;
-}
-#tags a {
-  color: #85002c;
-  text-decoration: none;
-}
-#tags a:hover {
-  text-decoration: underline;
+:root{
+  --rail-l: 280px;      /* 왼쪽 폭 */
+  --rail-r: 220px;      /* 오른쪽 폭 */
+  --max: 1200px;
+  --ink:#111; --muted:#8a8a8a; --rule:#ddd;
 }
 
-h1 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; color:var(--ink); background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",
+               "Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.7; font-size:16px;
 }
 
-  aside h2 {
-  font-size: 1rem;
-  margin-top: 1rem;
-  color: #888; /* 회색빛 */
-  font-weight: 600;
-  cursor: pointer; /* 클릭 가능하게 */
-}
-    aside ul {
-      padding-left: 1rem; 
-    }
-    aside li {
-      list-style: none; 
-      margin: 0.2rem 0; 
-      font-size: 1rem ;
-    }
-    aside a { 
-      display: inline-block;
-      font-family: 'Courier New', monospace;
-      white-space: pre; /* 공백 유지 */
-      text-indent: -3.5ch;
-      padding-left: 4ch;
-      text-decoration: none; 
-      color: #85002c; 
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-        
-    aside a.active {
-    font-weight: bold;
-    color: #000;
-    }
-
-    /* ----- 레이아웃 기본 ----- */
-#container{
-  display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  min-height: 100vh;               /* height → min-height 로 바꿔 페이지 스크롤 허용 */
+/* ===== 3열 그리드 레이아웃 ===== */
+#container.layout{
+  display:grid;
+  grid-template-columns: var(--rail-l) minmax(0,1fr) var(--rail-r);
+  gap:24px;
+  max-width:var(--max);
+  margin:0 auto;
+  min-height:100vh;      /* 페이지 스크롤 허용 (height 고정 X) */
+  padding:16px;
 }
 
-/* 왼쪽 연도/목록: 스티키 + 자체 스크롤(긴 목록 보호) */
-aside{
-  width: 280px;
-  background: #f8f8f8;
-  padding: 1rem;
-  border-right: 1px solid #ccc;
-  position: sticky;
-  top: 0;
-  max-height: 100vh;
-  overflow: auto;                   /* 내부만 스크롤 */
+/* 왼쪽/오른쪽 레일: sticky + 자체 스크롤 */
+.left-rail, #tags{
+  position: sticky; top:0; align-self:start;
+  max-height: 100vh; overflow:auto;
+  padding:16px;
 }
+.left-rail{ background:#f7f7f7; border-right:1px solid var(--rule); }
+#tags{ border-left:1px solid var(--rule); }
 
-/* 본문: 페이지 스크롤 사용 (이중 스크롤 제거) */
-main{
-  flex: 1;
-  padding: 2rem;
-  overflow: visible;                /* auto → visible */
-}
+/* 가운데 본문: 넘침 방지 */
+#content{ min-width:0; }  /* 중요! 회색 띠/겹침 방지 */
 
-/* 태그 사이드: 스티키 + 자체 스크롤 */
-#tags{
-  width: 220px;
-  padding: 1rem;
-  border-left: 1px solid #ccc;
-  background: #fff;
-  position: sticky;
-  top: 0;
-  max-height: 100vh;
-  overflow: auto;
-}
-
-/* 연도 토글(details/summary) 기본 스타일 */
-details.year{ margin: .25rem 0 .5rem; }
+/* 연도 토글 + 목록 */
+details.year{ margin:.25rem 0 .75rem; }
 details.year > summary{
-  list-style: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #888;
-  font-weight: 600;
-  padding: .25rem 0;
+  list-style:none; cursor:pointer; color:var(--muted);
+  font-weight:600; padding:.25rem 0;
 }
 details.year > summary::-webkit-details-marker{ display:none; }
 
-/* 왼쪽 링크(날짜 정렬 표현 유지) */
-aside a{
-  display: inline-block;
-  font-family: 'Courier New', monospace;
-  white-space: pre;
-  text-indent: -3.5ch;
-  padding-left: 4ch;
-  text-decoration: none;
-  color: #85002c;
+.year-posts{ list-style:none; margin:.25rem 0; padding:0; }
+.left-rail a{
+  display:inline-block; white-space:pre; text-indent:-3.5ch; padding-left:4ch;
+  text-decoration:none; color:#85002c; font-family:"Courier New",monospace;
 }
-aside a.active{ font-weight: 700; color: #000; }
+.left-rail a:hover{ text-decoration:underline; }
+.left-rail a.active{ font-weight:700; color:#000; }
+
+/* 본문 미디어 */
+#content img, #content video{ display:block; max-width:100%; height:auto; }
+#content video{ width:100%; border-radius:4px; }
+
+/* 태그 스타일 */
+#tags .tag{ display:block; margin:.25rem 0; color:#85002c; text-decoration:none; }
+#tags .tag:hover{ text-decoration:underline; }
 
 /* 반응형: 폭이 좁아지면 세로 스택 */
 @media (max-width: 960px){
-  #container{ display: block; }
-  aside, #tags{ position: static; max-height: none; width: auto; overflow: visible; }
-  main{ padding: 1.25rem; }
+  #container.layout{ grid-template-columns: 1fr; }
+  .left-rail, #tags{ position:static; max-height:none; overflow:visible; border:0; background:transparent; padding:8px 16px; }
 }
-
-/* 미디어(비디오/이미지) 유동폭 */
-.media, .post-content video, .post-content img{
-  display:block; max-width:100%; height:auto;
-}
-.post-content video{ width:100%; border-radius: 4px; }
