@@ -14,20 +14,19 @@ title: 홈
       <div class="post-card-layout">
         <div class="post-card-thumb-wrapper">
           {%- assign thumb_src = post.thumbnail -%}
-
           {%- unless thumb_src -%}
-          {%- assign content_html = post.content -%}
-          {%- if content_html contains '<img' -%} {%- assign parts=content_html | split: '<img' -%} {%- assign
-            img_tag=parts[1] | split: '>' | first -%} {%- assign thumb_src=img_tag | split: 'src="' | last | split: '"'
-            | first -%} {%- if thumb_src==img_tag -%} {%- assign thumb_src=img_tag | split: "src='" | last | split: "'"
-            | first -%} {%- endif -%} {%- elsif content_html contains '<video' -%} {%- assign parts=content_html |
-            split: '<video' -%} {%- assign video_tag=parts[1] | split: '>' | first -%} {%- assign thumb_src=video_tag |
-            split: 'src="' | last | split: '"' | first -%} {%- endif -%} {%- endunless -%} {%- if thumb_src -%} {%-
-            assign th_ext=thumb_src | downcase -%} {%- if th_ext contains '.mp4' or th_ext contains '.mov' or th_ext
-            contains '.webm' -%} <video class="post-card-thumb" src="{{ thumb_src | relative_url }}" autoplay muted loop
-            playsinline></video>
+          {%- assign cnt = post.content -%}
+          {%- if cnt contains '<img ' -%}
+              {%- assign p = cnt | split: ' <img ' -%}
+              {%- assign t = p.last | split: '>' | first -%}
+          {%- assign thumb_src = t | split: 'src="' | last | split: '"' | first -%}
+          {%- elsif cnt contains '<video' and cnt contains '<source' -%} {%- assign p=cnt | split: '<source' -%} {%-
+            assign t=p.last | split: '>' | first -%} {%- assign thumb_src=t | split: 'src="' | last | split: '"' | first
+            -%} {%- endif -%} {%- endunless -%} {%- if thumb_src and thumb_src !="" and thumb_src !=cnt -%} {%- assign
+            ext=thumb_src | downcase -%} {%- if ext contains '.mp4' or ext contains '.mov' or ext contains '.webm' -%}
+            <video class="post-card-thumb" src="{{ thumb_src }}" autoplay muted loop playsinline></video>
             {%- else -%}
-            <img src="{{ thumb_src | relative_url }}" alt="Thumbnail for {{ post.title }}" class="post-card-thumb">
+            <img src="{{ thumb_src }}" alt="" class="post-card-thumb">
             {%- endif -%}
             {%- else -%}
             <div class="post-card-thumb-fallback"></div>
