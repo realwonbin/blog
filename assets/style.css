@@ -77,8 +77,9 @@ a {
   width: 100%;
   padding: 0 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 24px;
 }
 
 .site-title {
@@ -320,40 +321,22 @@ main[role="main"] {
 }
 
 /* =========================================
-   Tags Horizontal Bar
+   Header Tags
    ========================================= */
-.tags-bar {
-  position: sticky;
-  top: var(--header-height);
-  z-index: 99;
-  background-color: rgba(249, 250, 251, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 12px 24px;
+.header-tags {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   overflow-x: auto;
   white-space: nowrap;
-  /* Hide scrollbar for clean look */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .tags-bar {
-    background-color: rgba(30, 33, 39, 0.95);
-  }
-}
-
-.tags-bar::-webkit-scrollbar {
+.header-tags::-webkit-scrollbar {
   display: none;
-}
-
-.tags-bar-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  gap: 12px;
-  align-items: center;
 }
 
 .tags-label {
@@ -362,7 +345,7 @@ main[role="main"] {
   color: var(--text-muted);
 }
 
-.tags-bar .tag {
+.header-tags .tag {
   font-size: 0.9rem;
   color: var(--text-secondary);
   background: var(--card-bg);
@@ -373,7 +356,7 @@ main[role="main"] {
   display: inline-block;
 }
 
-.tags-bar .tag:hover {
+.header-tags .tag:hover {
   background: var(--accent-color);
   color: #fff;
   border-color: var(--accent-color);

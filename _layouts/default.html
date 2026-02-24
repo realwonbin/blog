@@ -20,25 +20,20 @@
         <span class="site-title">이영</span>
       </a>
 
-      <!-- Placeholder for future search or navigation logic if needed -->
-
+      <!-- Tags inside header -->
+      <nav class="header-tags">
+        {%- assign extern = site.data.externals | sort: 'order' -%}
+        {%- assign extern_names = extern | map: 'name' -%}
+        {%- assign sorted_tags = site.tags | sort -%}
+        {%- for t in sorted_tags -%}
+        {%- assign name = t[0] -%}
+        {%- unless extern_names contains name -%}
+        <a class="tag" href="{{ '/tag/' | append: name | append: '/' | relative_url }}">#{{ name }}</a>
+        {%- endunless -%}
+        {%- endfor -%}
+      </nav>
     </div>
   </header>
-
-  <!-- Tags Horizontal Bar -->
-  <nav class="tags-bar">
-    <div class="tags-bar-inner">
-      <span class="tags-label">TAGS:</span>
-      {%- assign extern_names = extern | map: 'name' -%}
-      {%- assign sorted_tags = site.tags | sort -%}
-      {%- for t in sorted_tags -%}
-      {%- assign name = t[0] -%}
-      {%- unless extern_names contains name -%}
-      <a class="tag" href="{{ '/tag/' | append: name | append: '/' | relative_url }}">#{{ name }}</a>
-      {%- endunless -%}
-      {%- endfor -%}
-    </div>
-  </nav>
 
   <!-- Main Content Area -->
   <div id="container" class="layout-single">
