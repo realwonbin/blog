@@ -420,20 +420,27 @@ main[role="main"] {
 }
 
 /* =========================================
-   Footer
+   Tags Horizontal Bar
    ========================================= */
-.site-footer {
-  margin-top: 64px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border-color);
-  text-align: center;
+.tags-bar {
+  background-color: var(--card-hover-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 24px;
+  overflow-x: auto;
+  white-space: nowrap;
+  /* Hide scrollbar for clean look */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.footer-tags {
-  margin-bottom: 24px;
+.tags-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tags-bar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 12px;
   align-items: center;
 }
@@ -444,7 +451,7 @@ main[role="main"] {
   color: var(--text-muted);
 }
 
-.footer-tags .tag {
+.tags-bar .tag {
   font-size: 0.9rem;
   color: var(--text-secondary);
   background: var(--card-bg);
@@ -452,12 +459,23 @@ main[role="main"] {
   padding: 4px 12px;
   border-radius: 20px;
   transition: all 0.2s ease;
+  display: inline-block;
 }
 
-.footer-tags .tag:hover {
+.tags-bar .tag:hover {
   background: var(--accent-color);
   color: #fff;
   border-color: var(--accent-color);
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+.site-footer {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
 }
 
 .copyright {
