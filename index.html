@@ -13,18 +13,18 @@ title: 홈
     <a class="post-card-link" href="{{ post.url | relative_url }}">
       <div class="post-card-layout">
         <div class="post-card-thumb-wrapper">
-          {%- assign thumb_src = post.thumbnail -%}
-          {%- unless thumb_src -%}
-          {%- assign cnt = post.content -%}
-          {%- if cnt contains '<img ' -%}
-              {%- assign p = cnt | split: ' <img ' -%}
-              {%- assign t = p.last | split: '>' | first -%}
-          {%- assign thumb_src = t | split: 'src="' | last | split: '"' | first -%}
-          {%- elsif cnt contains '<video' and cnt contains '<source' -%} {%- assign p=cnt | split: '<source' -%} {%-
-            assign t=p.last | split: '>' | first -%} {%- assign thumb_src=t | split: 'src="' | last | split: '"' | first
-            -%} {%- endif -%} {%- endunless -%} {%- if thumb_src and thumb_src !="" and thumb_src !=cnt -%} {%- assign
-            ext=thumb_src | downcase -%} {%- if ext contains '.mp4' or ext contains '.mov' or ext contains '.webm' -%}
-            <video class="post-card-thumb" src="{{ thumb_src }}" autoplay muted loop playsinline></video>
+          {%- capture thumb_html -%}
+          {%- assign th_tmp = post.thumbnail -%}
+          {%- unless th_tmp -%}
+          {%- assign c = post.content -%}
+          {%- if c contains '<img' -%} {%- assign p1=c | split: '<img' -%} {%- assign p2=p1[1] | split: '>' | first -%}
+            {%- assign th_tmp=p2 | split: 'src="' | last | split: '"' | first -%} {%- elsif c contains '<source' -%} {%-
+            assign p1=c | split: '<source' -%} {%- assign p2=p1[1] | split: '>' | first -%} {%- assign th_tmp=p2 |
+            split: 'src="' | last | split: '"' | first -%} {%- endif -%} {%- endunless -%} {{ th_tmp }} {%- endcapture
+            -%} {%- assign thumb_src=thumb_html | strip -%} {%- if thumb_src and thumb_src !="" and thumb_src
+            !=post.content -%} {%- assign ext=thumb_src | downcase -%} {%- if ext contains '.mp4' or ext contains '.mov'
+            or ext contains '.webm' -%} <video class="post-card-thumb" src="{{ thumb_src }}" autoplay muted loop
+            playsinline></video>
             {%- else -%}
             <img src="{{ thumb_src }}" alt="" class="post-card-thumb">
             {%- endif -%}

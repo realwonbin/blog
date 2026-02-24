@@ -9,4 +9,4 @@ permalink: 2021-04-26-safetyclinic/
 
 # 거제도, 세이프티 클리닉 
 
-{% include media.html name="2021-04-26-safetyclinic" ext="mp4" %}
+![](https://episodearth.synology.me/media/safety.mp4)
