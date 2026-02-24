@@ -339,7 +339,12 @@ main[role="main"] {
    Tags Horizontal Bar
    ========================================= */
 .tags-bar {
-  background-color: var(--card-hover-bg);
+  position: sticky;
+  top: var(--header-height);
+  z-index: 99;
+  background-color: rgba(249, 250, 251, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   padding: 12px 24px;
   overflow-x: auto;
@@ -347,6 +352,12 @@ main[role="main"] {
   /* Hide scrollbar for clean look */
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tags-bar {
+    background-color: rgba(30, 33, 39, 0.95);
+  }
 }
 
 .tags-bar::-webkit-scrollbar {
