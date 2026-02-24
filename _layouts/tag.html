@@ -2,41 +2,37 @@
 layout: default
 ---
 
-{%- comment -%}
-  목적지(포트폴리오) URL — 한글/공백 안전을 위해 uri_escape 적용
-{%- endcomment -%}
 {% assign dest = site.portfolio_url | append: '/?tag=' | append: page.tag | uri_escape %}
-
-{%- comment -%}
-  ⚠️ 자동 리다이렉트는 UX/SEO에 불리하고 모든 태그가 외부로 튀는 원인이 됩니다.
-  정말 필요할 때만 `_config.yml`에 tag_redirect: true 설정 후
-  아래 조건을 page.tag == 'portfolio' 같은 구체 조건으로 제한하세요.
-{%- endcomment -%}
 {%- if false and site.portfolio_url and site.tag_redirect -%}
-  <script>location.replace('{{ dest | escape }}');</script>
-  <noscript><p><a href="{{ dest }}">포트폴리오로 이동</a></p></noscript>
+<script>location.replace('{{ dest | escape }}');</script>
+<noscript>
+  <p><a href="{{ dest }}">포트폴리오로 이동</a></p>
+</noscript>
 {%- endif -%}
 
-<article class="post">
-  <header class="post-head">
-  <h1 class="post-title">#{{ page.tag }}</h1>   <!--# ← 앵커 제거 -->
-  <p class="post-meta">태그 페이지</p>
+<header class="page-header">
+  <h1 class="page-title">#{{ page.tag }}</h1>
+  <p class="page-meta">해당 태그가 포함된 글 모음</p>
 </header>
 
-  </header>
-
-  <section class="post-body prose">
-    <ul>
-      {%- assign items = site.posts
-           | where_exp: "p", "p.tags contains page.tag"
-           | sort: "date" | reverse -%}
-      {%- for p in items -%}
-        <li>
-          <a href="{{ p.url | relative_url }}">{{ p.date | date: "%Y-%m-%d" }} – {{ p.title }}</a>
-        </li>
-      {%- else -%}
-        <li>이 태그가 붙은 글이 없습니다.</li>
-      {%- endfor -%}
-    </ul>
-  </section>
-</article>
+<div class="post-list">
+  {%- assign items = site.posts
+  | where_exp: "p", "p.tags contains page.tag"
+  | sort: "date" | reverse -%}
+  {%- for post in items -%}
+  <article class="post-card">
+    <a class="post-card-link" href="{{ post.url | relative_url }}">
+      <div class="post-card-content">
+        <h2 class="post-card-title">{{ post.title }}</h2>
+        <div class="post-card-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%Y년 %m월 %d일" }}
+          </time>
+        </div>
+      </div>
+    </a>
+  </article>
+  {%- else -%}
+  <p class="empty-state">이 태그가 붙은 글이 없습니다.</p>
+  {%- endfor -%}
+</div>

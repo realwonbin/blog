@@ -7,3 +7,4 @@ _site/
 *.gem
 *.log
 deploy.sh
+.DS_Store

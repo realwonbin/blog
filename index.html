@@ -1,8 +1,28 @@
 ---
 layout: default
+title: 홈
 ---
-<h1>{{ page.title }}</h1>
-<p><strong>{{ page.date | date: "%Y-%m-%d" }}</strong></p>
-<div class="post-content">
-  {{ content }}
+<div class="home-cover">
+  <h1 class="home-title">기록의 보관소</h1>
+  <p class="home-desc">배우고 경험한 것들을 남깁니다.</p>
+</div>
+
+<div class="post-list">
+  {%- for post in site.posts -%}
+  <article class="post-card">
+    <a class="post-card-link" href="{{ post.url | relative_url }}">
+      <div class="post-card-content">
+        <h2 class="post-card-title">{{ post.title }}</h2>
+        <div class="post-card-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%Y년 %m월 %d일" }}
+          </time>
+        </div>
+        <p class="post-card-excerpt">
+          {{ post.excerpt | strip_html | truncatewords: 25 }}
+        </p>
+      </div>
+    </a>
+  </article>
+  {%- endfor -%}
 </div>
