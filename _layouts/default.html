@@ -22,19 +22,6 @@
 
       <!-- Placeholder for future search or navigation logic if needed -->
 
-      <nav class="site-nav">
-        <ul>
-          <li><a href="{{ '/' | relative_url }}">홈</a></li>
-          {%- assign extern = site.data.externals | sort: 'order' -%}
-          {%- for e in extern -%}
-          <li>
-            <a href="{{ e.url }}" {% unless e.newtab==false %}target="_blank" rel="noopener" {% endunless %}>
-              {{ e.label | default: e.name }} ↗
-            </a>
-          </li>
-          {%- endfor -%}
-        </ul>
-      </nav>
     </div>
   </header>
 
@@ -61,6 +48,14 @@
 
     <!-- Footer Copyright -->
     <footer class="site-footer">
+      <div class="footer-links">
+        {%- assign extern = site.data.externals | sort: 'order' -%}
+        {%- for e in extern -%}
+        <a href="{{ e.url }}" {% unless e.newtab==false %}target="_blank" rel="noopener" {% endunless %}>
+          {{ e.label | default: e.name }} ↗
+        </a>
+        {%- endfor -%}
+      </div>
       <p class="copyright">&copy; {{ site.time | date: '%Y' }} 영사마. All rights reserved.</p>
     </footer>
   </div>
