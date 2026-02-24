@@ -4,23 +4,32 @@ title: 홈
 ---
 <div class="home-cover">
   <h1 class="home-title">기록의 보관소</h1>
-  <p class="home-desc">배우고 경험한 것들을 남깁니다.</p>
+  <p class="home-desc">그냥 아무거나.</p>
 </div>
 
 <div class="post-list">
   {%- for post in site.posts -%}
   <article class="post-card">
     <a class="post-card-link" href="{{ post.url | relative_url }}">
-      <div class="post-card-content">
-        <h2 class="post-card-title">{{ post.title }}</h2>
-        <div class="post-card-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%Y년 %m월 %d일" }}
-          </time>
+      <div class="post-card-layout">
+        <div class="post-card-thumb-wrapper">
+          {% if post.thumbnail %}
+          <img src="{{ post.thumbnail | relative_url }}" alt="Thumbnail for {{ post.title }}" class="post-card-thumb">
+          {% else %}
+          <div class="post-card-thumb-fallback"></div>
+          {% endif %}
         </div>
-        <p class="post-card-excerpt">
-          {{ post.excerpt | strip_html | truncatewords: 25 }}
-        </p>
+        <div class="post-card-content">
+          <h2 class="post-card-title">{{ post.title }}</h2>
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%Y년 %m월 %d일" }}
+            </time>
+          </div>
+          <p class="post-card-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 25 }}
+          </p>
+        </div>
       </div>
     </a>
   </article>
