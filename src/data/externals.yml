@@ -18,7 +18,7 @@
   newtab: true
 - name: abc
   label: abc
-  url: https://abc-xdv.pages.dev
+  url: https://abc-vdk.pages.dev
   order: 20
   newtab: false
 - name: margins
