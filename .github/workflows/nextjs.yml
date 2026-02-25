@@ -41,6 +41,8 @@ jobs:
         run: npm ci
       - name: Build with Next.js
         run: npx next build
+      - name: Copy CNAME to export
+        run: cp CNAME ./out/ || true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
