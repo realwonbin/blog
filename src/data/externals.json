@@ -1,0 +1,30 @@
+[
+    {
+        "name": "portfolio",
+        "label": "portfolio",
+        "url": "https://www.younglee.co.kr",
+        "order": 1,
+        "newtab": true
+    },
+    {
+        "name": "margins",
+        "label": "margins",
+        "url": "https://margins.younglee.co.kr",
+        "order": 2,
+        "newtab": true
+    },
+    {
+        "name": "instagram",
+        "label": "instagram",
+        "url": "https://instagram.com/iam2020",
+        "order": 10,
+        "newtab": true
+    },
+    {
+        "name": "email",
+        "label": "email",
+        "url": "mailto:iam2022@gmail.com",
+        "order": 20,
+        "newtab": false
+    }
+]
