@@ -2,11 +2,10 @@
 title: 밥봉활공장, 시험비행
 layout: default
 date: 2025-05-17
-tags: [paragliding]
+tags: [paragliding, 2025]
 permalink: 2025-05-17-bapbong-testflight/
 ---
 
-# 밥봉활공장 시험비행
 
 ![](https://episodearth.synology.me/media/2025-05-17.mp4)
 
