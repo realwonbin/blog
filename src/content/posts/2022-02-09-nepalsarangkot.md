@@ -2,7 +2,7 @@
 title: 네팔, 사랑곳
 layout: default
 date: 2022-02-09
-tags: [paragliding]
+tags: [paragliding, 2022, nepal]
 permalink: 2022-02-09-nepalsarangkot/
 ---
 
