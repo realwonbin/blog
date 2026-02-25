@@ -19,12 +19,5 @@
         "url": "https://instagram.com/iam2020",
         "order": 10,
         "newtab": true
-    },
-    {
-        "name": "abc",
-        "label": "abc",
-        "url": "https://abc-vdk.pages.dev",
-        "order": 20,
-        "newtab": false
     }
 ]
