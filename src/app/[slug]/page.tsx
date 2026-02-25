@@ -63,6 +63,28 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
+                    components={{
+                        img: ({ src, alt, ...props }) => {
+                            if (!src) return null;
+                            const srcString = String(src);
+                            const isVideo = srcString.match(/\.(mp4|webm|mov|ogg)$/i);
+                            if (isVideo) {
+                                return (
+                                    <video
+                                        src={srcString}
+                                        controls
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', margin: '2em auto' }}
+                                    />
+                                );
+                            }
+                            // Otherwise, render a standard image
+                            return <img src={srcString} alt={alt || ''} {...props} loading="lazy" />;
+                        }
+                    }}
                 >
                     {post.content}
                 </ReactMarkdown>
