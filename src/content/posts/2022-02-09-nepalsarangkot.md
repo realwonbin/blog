@@ -8,6 +8,7 @@ permalink: 2022-02-09-nepalsarangkot/
 
 # 사랑곳, 네팔 / Sarangkot, Nepal 
 
-{% include media.html name="2022-02-09-nepalsarangkot1" ext="mp4" %}
-{% include media.html name="2022-02-09-nepalsarangkot2" ext="mp4" %}
-{% include media.html name="2022-02-09-nepalsarangkot3" ext="mp4" %}
+![](https://episodearth.synology.me/media/nepal2021.mov)
+![](https://episodearth.synology.me/media/nepal2021-1.mov)
+![](https://episodearth.synology.me/media/nepal2021-2.mov)
+![](https://episodearth.synology.me/media/nepal2021-3.mov)
