@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | 이영',
     default: '이영',
   },
-  description: '기록의 보관소',
+  description: '보관소',
 };
 
 export default function RootLayout({
