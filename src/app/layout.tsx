@@ -39,7 +39,6 @@ export default function RootLayout({
       <head>
         <link
           rel="stylesheet"
-          as="style"
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
         />
@@ -55,7 +54,11 @@ export default function RootLayout({
             {/* Tags inside header */}
             <nav className="header-tags">
               {displayTags.map(tag => (
-                <Link key={tag} className="tag" href={`/tag/${tag}`}>
+                <Link
+                  key={tag}
+                  className="tag"
+                  href={`/tag/${encodeURIComponent(tag)}`}
+                >
                   #{tag}
                 </Link>
               ))}
