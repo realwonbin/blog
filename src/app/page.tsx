@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <div className="home-cover">
         <h1 className="home-title">보관소</h1>
-        <p className="home-desc">생각나는대로</p>
+        <p className="home-desc">인상적인 것들</p>
       </div>
 
       <div className="post-list">
