@@ -2,7 +2,7 @@
 title: 밥봉활공장, 시험비행
 layout: default
 date: 2025-05-17
-tags: [paragliding, 2025]
+tags: [paragliding]
 permalink: 2025-05-17-bapbong-testflight/
 ---
 
