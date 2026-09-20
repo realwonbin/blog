@@ -6,13 +6,7 @@
         "order": 1,
         "newtab": true
     },
-    {
-        "name": "margins",
-        "label": "margins",
-        "url": "https://margins.younglee.co.kr",
-        "order": 2,
-        "newtab": false
-    },
+   
     {
         "name": "instagram",
         "label": "instagram",
